@@ -1,0 +1,21 @@
+wordpress:
+  image: wordpress:latest
+  ports:
+    - "80:80"
+  volumes:
+    - ./wp-content:/var/www/html/wp-content
+    - wp-data:/var/www/html/wp-content/uploads
+  environment:
+    - WORDPRESS_DB_HOST=db
+    - WORDPRESS_DB_PASSWORD=mydb
+    - WORDPRESS_DB_USER=mydb
+    - WORDPRESS_DB_NAME=db
+db:
+  image: mysql:latest
+  volumes:
+    - db_data:/var/lib/mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=mydb
+    - MYSQL_DATABASE=db
+    - MYSQL_USER=mydb
+    - MYSQL_PASSWORD=mydb
